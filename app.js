@@ -33,6 +33,11 @@ function handleInput(input) {
   display.focus();
 }
 
+// input validation
+display.addEventListener("input", () => {
+  display.value = display.value.replace(/[^0-9+\-*/%.() ]/g, "");
+});
+
 // mouse click
 buttons.addEventListener("click", (evt) => {
   if (evt.target.tagName === "INPUT") {
@@ -45,8 +50,6 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
     display.value = safeCalculate(display.value);
-  } else if (e.key === "Backspace") {
-    display.value = display.value.slice(0, -1);
   } else if (e.key === "Escape") {
     display.value = "";
   }
